@@ -4,13 +4,16 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import *
 import keras_tuner as kt
+import torch
+
+
 
 #importing the dataset
 mnist= tf.keras.datasets.mnist
 (x_train,y_train),(x_test,y_test)=mnist.load_data()
 x_train,x_test= x_train/255, x_test/255
 
-#using AutoML to optimize the dense layer in a basic model
+#using AutoML to optimize the dense layer in a basic model to chose the best value
 def model_builder(hp):
     model = Sequential()
     model.add(Flatten(input_shape=(28,28)))
